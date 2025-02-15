@@ -37,6 +37,10 @@ public class JoystickManager {
 		GLFW.glfwInit();
 	}
 	
+	public void setPollRate( long pollrate ) {
+		this.pollrate = pollrate;
+	}
+	
 	public synchronized Map<Integer, Joystick> enumerateJoysticks() {
 		for ( int i = 0; i < ids.length; i++ ) {
 			int p = GLFW.glfwJoystickPresent( i );

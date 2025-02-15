@@ -9,13 +9,17 @@ package joystick.event;
  */
 public class HoldDelayJoystickEventListener extends JoystickEventAdapter {
 
-	private final int HOLD = 15;
+	private int delay = 15;
 	
 	protected int holdCount = 0;
 	
 	private int heldButton = -1;
 	
 	private JoystickEventListener l;
+	
+	public void setDelayThreshold( int delay ) {
+		this.delay = delay;
+	}
 	
 	public HoldDelayJoystickEventListener( JoystickEventListener l ) {
 		this.l = l;
@@ -33,9 +37,9 @@ public class HoldDelayJoystickEventListener extends JoystickEventAdapter {
 			resetHoldCount();
 		}
 		heldButton = e.getButton();
-		if ( holdCount == HOLD ) {
+		if ( holdCount >= delay ) {
 			l.buttonHeld( e );
-			resetHoldCount();
+//			resetHoldCount();
 		}
 	}
 	
